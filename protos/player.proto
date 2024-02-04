@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package player;
+
+option go_package = "player/";
+
+service Player {
+  rpc PlaySong(PlaySongRequest) returns (PlaySongResponse) {}
+  rpc PauseSong(PauseSongRequest) returns(PauseSongResponse) {}
+  rpc DeleteSong(DeleteSongRequest) returns (DeleteSongResponse) {}
+  rpc AddSong(AddSongRequest) returns (AddSongResponse) {}
+  rpc ShowSongs(ShowSongsRequest) returns (ShowSongsResponse) {}
+  rpc StopPlay(StopRequest) returns (StopResponse) {}
+  rpc GetCurrentSong(GetCurrentSongRequest) returns (GetCurrentSongResponse) {}
+}
+
+message PlaySongRequest {}
+
+message PlaySongResponse {
+  string info = 1;
+}
+
+message PauseSongRequest {}
+
+message PauseSongResponse {
+  string info = 1;
+}
+
+message DeleteSongRequest {
+  int32 song_id = 1;
+}
+
+message DeleteSongResponse {
+  int32 song_id = 1;
+  string song_name = 2;
+}
+
+message AddSongRequest {
+  string song_name = 1;
+  string song_duration = 2;
+}
+
+message AddSongResponse {
+  int32 song_id = 1;
+  string song_name = 2;
+  string song_duration = 3;
+}
+
+message ShowSongsRequest {}
+
+message Song {
+  int32 song_id = 1;
+  string song_name = 2;
+  string song_duration = 3;
+}
+
+message ShowSongsResponse {
+  repeated Song songs = 1;
+}
+
+message StopRequest {}
+
+message StopResponse {
+  string info = 1;
+}
+
+message GetCurrentSongRequest {}
+
+message GetCurrentSongResponse {
+  string song_name = 1;
+  string left_song_duration = 2;
+}
